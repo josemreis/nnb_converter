@@ -1,0 +1,478 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# 3 Types, Values, and Variables\n\nNotebook for chapter 3 of [JavaScript: The Definitive Guide: Master the World's Most-Used Programming Language, 7th Edition](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/).\n\nJavaScript types can be divided into two categories: *primitive types* and *object types*. JavaScript's primitive types are composed by:\n* text\n* number\n* boolean\n* symbol\n* `null`\n* `undefined`\n\nAny type which is not one of the described above is defined as *type object* or an `object`. An `object` is a collection of `properties`, where each property as a name and a value (either a primitive value or another object).\n\nAn ordinary object is an *unordered collection of named values*. However, there are special types of object which differ from these standard objects, such as:\n* An `array` is an *ordered collection of numbered values*"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const fruits = ['Maçã', 'Banana'];\n\nconsole.log(fruits);"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 'Maçã', 'Banana' ]",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "* A `Set` object represents a set of **unique** values"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const my_set1 = new Set()\n\nmy_set1.add(1)           // Set [ 1 ]\nmy_set1.add(5)           // Set [ 1, 5 ]\nmy_set1.add(5)           // Set [ 1, 5 ]\nmy_set1.add('some text') // Set [ 1, 5, 'some text' ]\n\nconsole.log(my_set1)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Set(3) { 1, 5, 'some text' }",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "* A `Map` object represents mapping keys to values (fairly similar, at least in usage, to Python's dictionaries)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "// this is a map\nconst fruits2 = new Map([\n    [\"apples\", 500],\n    [\"bananas\", 300],\n    [\"oranges\", 200]\n  ]);\n\n  console.log(fruits2)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Map(3) { 'apples' => 500, 'bananas' => 300, 'oranges' => 200 }",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Among other...\n\n## Numbers\n\n`Number`, a primitive js numeric type, is used to represent integers and to approximate real numbers.\n\n### Integer Literals\n\nIn a JavaScript program, a base-10 integer is written as a sequence of digits. For example:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "0\n3\n10000000"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m10000000\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In addition to base-10 integer literals, JavaScript recognizes hexadecimal (base-16) values. A hexadecimal literal begins with `0x` or `0X`, followed by a string of hexadecimal digits. A hexadecimal digit is one of the digits 0 through 9 or the letters a (or A)\nthrough f (or F), which represent values 10 through 15. Here are examples of hexadecimal integer literals:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "a = 0xff// => 255: (15*16 + 15)\nconsole.log(a)\nb = 0xBADCAFE // => 195939070\nconsole.log(b)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "255",
+                                "195939070",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Floating-Point Literals\n\nFloating-point literals can have a decimal point; they use the traditional syntax for real numbers. A real value is represented as the integral part of the number, followed by a decimal point and the fractional part of the number."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "3.14\n2345.6789\n.333333333333333333\n6.02e23\n// 6.02 × 10²³\n1.4738223E-32 // 1.4738223 × 10 ⁻ ³²"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m1.4738223e-32\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Arithmetic in JavaScript\n\nJavaScript programs work with numbers using the arithmetic operators . that the language provides. These include + for addition, - for subtraction, * for multiplication, / for division, and % for modulo (remainder after division). ES2016 adds ** for exponentiation. Full details on these and other operators can be found in Chapter 4."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "Math.pow(2,53) // => 9007199254740992: 2 to the power 53\nMath.round(.6) // => 1.0: round to the nearest integer\nMath.ceil(.6) // => 1.0: round up to an integer\nMath.floor(.6) // => 0.0: round down to an integer\nMath.abs(-5) // => 5: absolute value\nMath.max(1,2,3) // Return the largest argument\nMath.min(1,2,3) // Return the smallest argument\nMath.random() // Pseudo-random number x where 0 <= x < 1.0\nMath.PI // π: circumference of a circle / diameter\nMath.E // e: The base of the natural logarithm\nMath.sqrt(3) // => 3**0.5: the square root of 3\nMath.pow(3, 1/3) // => 3**(1/3): the cube root of 3\nMath.sin(0) // Trigonometry: also Math.cos, Math.atan, etc.\nMath.log(10) // Natural logarithm of 10\nMath.log(100)/Math.LN10 // Base 10 logarithm of 100\nMath.cbrt(27) // => 3: cube root\nMath.hypot(3, 4) // => 5: square root of sum of squares of all arguments\nMath.log10(100) // ()=> 2: Base-10 logarithm\nMath.log2(1024) // => 10: Base-2 logarithm\nMath.log1p(x) // Natural log of (1+x); accurate for very small x\nMath.expm1(x) // Math.exp(x)-1; the inverse of Math.log1p()\nMath.sign(x) // -1, 0, or 1 for arguments <, ==, or > 0\nMath.imul(2,3) // => 6: optimized multiplication of 32-bit integers\nMath.clz32(0xf) // => 28: number of leading zero bits in a 32-bit integer\nMath.trunc(3.9) // => 3: convert to an integer by truncating fractional part\nMath.fround(x) // Round to nearest 32-bit float number\nMath.sinh(x) // Hyperbolic sine. Also Math.cosh(), Math.tanh()\nMath.asinh(x) // Hyperbolic arcsine. Also Math.acosh(), Math.atanh()\n\n\n\n\n\n\n\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33mNaN\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Arithmetic in JavaScript does not raise errors in cases of overflow, underflow, or division by zero. When the result of a numeric operation is larger than the largest representable number (overflow), the result is a special infinity value, Infinity."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "Infinity\nNumber.POSITIVE_INFINITY\n1/0\nNumber.MAX_VALUE * 2\n-Infinity\nNumber.NEGATIVE_INFINITY\n-1/0\n-Number.MAX_VALUE * 2\nNaN\nNumber.NaN\n0/0\nInfinity/Infinity\nNumber.MIN_VALUE/2\n-Number.MIN_VALUE/2\n-1/Infinity\n-0"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m0\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The not-a-number value has one unusual feature in JavaScript: it does not compare equal to any other value, including itself. This means that you can’t write `x === NaN` to determine whether the value of a variable x is NaN. Instead, you must write `x != x`\nor `Number.isNaN(x)`. Those expressions will be true if, and only if, x has the same value as the global constant NaN."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "x = NaN\n\ntest_1 = x == NaN\n\ntest_2 = Number.isNaN(x)\n\n\nconsole.log(test_1)\nconsole.log(test_2)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "false",
+                                "true",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "Related to this, the function `Number.isFinite()` evaluates if an argument is a `Number` other than `NaN`, `Infinity`, or `-Infinity`"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "a = 1011\nb = Infinity\nc = NaN\n\nconsole.log(Number.isFinite(a))\nconsole.log(Number.isFinite(b))\nconsole.log(Number.isFinite(c))"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "true",
+                                "false",
+                                "false",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Arbitrary Precision Integers with BigInt\n\nAs the name implies, BigInt is a numeric type whose values are integers. The type was added to JavaScript mainly to allow the representation of 64-bit integers, which are required for compati‐\nbility with many other programming languages and APIs. But BigInt values can have thousands or even millions of digits, should you have need to work with numbers that large. You can use BigInt() as a function for converting regular JavaScript numbers or\nstrings to BigInt values:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "largest_number_allowed = Number.MAX_SAFE_INTEGER\n\neven_larger = Math.pow(largest_number_allowed, 2)\n\nconsole.log(even_larger)\n\nas_big_int = BigInt(even_larger)\n\nconsole.log(as_big_int)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "8.112963841460666e+31",
+                                "81129638414606663681390495662080n",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Dates and Times\n\nJavaScript defines a simple Date class for representing and manipulating the numbers that represent dates and times. JavaScript Dates are objects, but they also have a numeric representation as a timestamp that specifies the number of elapsed milliseconds since January 1, 1970:"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let timestamp = Date.now() // today's date as timestamp\nconsole.log(timestamp)\nlet now = Date() // today's date as a Date object\nconsole.log(now)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "1651853407085",
+                                "Fri May 06 2022 17:10:07 GMT+0100 (Western European Summer Time)",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The date methods will be covered in more detail later on. \n\n## Text\n\nThe JavaScript type for representing text is the *string*. A string is an immutable ordered sequence of 16-bit values, each of which typically representas a Unicode character. The *length* of a string is the number of 16-bit values it contains. JavaScript’s\nstrings (and its arrays) use zero-based indexing: the first 16-bit value is at position 0, the second at position 1, and so on. The empty string is the string of length 0. JavaScript does not have a special type that represents a single element of a string.\n\n### String Literals\n\nTo include a string in a JavaScript program, simply enclose the characters of the string within a matched pair of single or double quotes or backticks ( ' or \" or ` ). Double-quote characters and backticks may be contained within strings delimited by single-quote characters, and similarly for strings delimited by double quotes and backticks.\n\nThe original versions of JavaScript required string literals to be written on a single line, and it is common to see JavaScript code that creates long strings by concatenating single-line strings with the + operator. As of ES5, however, you can break a string literal across multiple lines by ending each line but the last with a backslash ( \\ )."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "a_text = \"Hello\"\nanother_text = \"World!\"\n\nconsole.log(a_text + another_text)\nconsole.log(a_text + \" \" +  another_text)\nconsole.log(a_text + \"\\n\" +  another_text)\nconsole.log(a_text  +  another_text)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "HelloWorld!",
+                                "Hello World!",
+                                "Hello",
+                                "World!",
+                                "HelloWorld!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "The backslash character ( \\ ) has a special purpose in JavaScript strings. Combined with the character that follows it, it represents a character that is not otherwise representable within the string. For example, \\n is an escape sequence that represents a newline character."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log('You can\\'t do that!')"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "You can't do that!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "To determine the length of a string we can use the `.length` property of the string. "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "a_text = \"This is a sentence.\"\n\nconsole.log(\"Current sentence has \" + a_text.length + \" characters\")"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Current sentence has 19 characters",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "In addition, the JavaScript provides a rich api for working with strings."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(a_text.substring(1,4)); // the 2nd, 3rd, and 4th characters\nconsole.log(a_text.slice(1,4)); // idem, but different function\nconsole.log(a_text.split(\" \")); // split the string \n/* searching for a substring */\nconsole.log(a_text.indexOf(\"This\")); // position of first character of the substring\nconsole.log(a_text.startsWith(\"This\")); // => true: string starts with this substring\nconsole.log(a_text.endsWith(\"sentence.\")); // => true: string ends with this substring\nconsole.log(a_text.includes(\"a\")); // => true: string includes this substring\n/* creating modified versions of a string */\nconsole.log(a_text.replace(\"is \", \"is not \")); // replace the first sub-string with the second\nconsole.log(a_text.toLowerCase()); // to lower case\nconsole.log(a_text.toUpperCase()); // to upper case\nconsole.log(\"\\u006E\\u0303o\".normalize()); // => ño: normalize to unicocde\n/* String padding functions in ES2017 */\nconsole.log(\"x\".padStart(3)); // => \" x\": add\nconsole.log(\"x\".padEnd(3)); // => \"x \": add\nconsole.log(\"x\".padStart(3, \"*\")); // => \"**x\": add\nconsole.log(\"x\".padEnd(3, \"-\")); // => \"x--\": add\n/* white space trimming */ \nx = \"        Hello world!            \";\nconsole.log(x.trim());\nconsole.log(x.trimStart());\nconsole.log(x.trimEnd());"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "his",
+                                "ño",
+                                "  x",
+                                "x  ",
+                                "**x",
+                                "x--",
+                                "Hello world!",
+                                "Hello world!            ",
+                                "        Hello world!",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "As discussed above, strings are nothing but arrays composed with 16-bit characters. Consequently, they may be index link arrays."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "a_text[0] + a_text[1] + a_text[2] + a_text[3];"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[32m'This'\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// with a for loop\nnew_text = \"\"\nmax_char = 4\nfor (let i = 0; i <= max_char; i++) {\n    new_text += a_text[i]\n}\nconsole.log(new_text)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "This ",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

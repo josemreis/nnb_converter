@@ -106,10 +106,18 @@ def string_to_multiline(text: str, every_n_character: int = 79) -> str:
     return re.sub("(.{every_n_character})", "\\1\n", text, 0, re.DOTALL)
 
 
+def remove_italic_bold_syntax(text: str) -> str:
+    """remove all the ** from a text"""
+    return " ".join([_ for _ in re.sub("\*", "", text).split() if len(_) > 0])
+
+def process_comment(text:str) -> str:
+    text = remove_italic_bold_syntax(text=text)
+    return string_to_multiline(text=text)
+
 def markdown_cell_to_comment(cell: dict, **kwargs) -> str:
     """Convert markdown cell to a javascript comment"""
     text = "\n".join([_ for _ in cell.get("source")[0].split("\n") if len(_) > 0])
-    return "\n".join(["/*", string_to_multiline(text=text), "*/"])
+    return "\n".join(["/*", process_comment(text=text), "*/"])
 
 
 def nnb_to_script(nnb_parsed: dict, n_vspaces: int = 2) -> str:

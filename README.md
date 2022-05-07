@@ -1,6 +1,6 @@
 # nnb_converter
 
-Python script for converting [Node.js notebooks](https://github.com/DonJayamanne/typescript-notebook) to Markdown or to a JavaScript script, and writes it in the directory of the nnb file.
+Python CLI tool for converting [Node.js notebooks](https://github.com/DonJayamanne/typescript-notebook) to Markdown or to a JavaScript script, and writing it in the directory of the nnb file.
 
 # Usage 
 

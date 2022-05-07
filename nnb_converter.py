@@ -59,6 +59,25 @@ def as_code_block(code: str, language: str = "bash") -> str:
     return "\n".join(["```" + language, code, "```"])
 
 
+def remove_ansi_escape(text: str) -> str:
+    # 7-bit C1 ANSI sequences
+    ansi_escape = re.compile(
+        r"""
+        \x1B  # ESC
+        (?:   # 7-bit C1 Fe (except CSI)
+            [@-Z\\-_]
+        |     # or [ for CSI, followed by a control sequence
+            \[
+            [0-?]*  # Parameter bytes
+            [ -/]*  # Intermediate bytes
+            [@-~]   # Final byte
+        )
+    """,
+        re.VERBOSE,
+    )
+    return ansi_escape.sub("", text)
+
+
 def code_cell_to_md(cell: dict) -> str:
     """covert a code cell to markdown"""
     code_list = cell.get("source")
@@ -69,7 +88,13 @@ def code_cell_to_md(cell: dict) -> str:
         md_output = ""
         for cur_output in output.get("items"):
             md_output += as_code_block(
-                "\n".join(["## " + _ for _ in cur_output.get("value") if len(_) > 0]),
+                "\n".join(
+                    [
+                        "## " + remove_ansi_escape(_)
+                        for _ in cur_output.get("value")
+                        if len(_) > 0
+                    ]
+                ),
                 language="bash",
             )
         out += "\n".join([code_block, md_output])
@@ -130,6 +155,7 @@ def main() -> None:
     with open(output_file, "w+") as fp:
         fp.write(converted)
     print(f"[+] The converted file can be found in {output_file}")
+
 
 if __name__ == "__main__":
     main()

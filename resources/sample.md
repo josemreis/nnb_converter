@@ -72,7 +72,7 @@ In a JavaScript program, a base-10 integer is written as a sequence of digits. F
 10000000
 ```
 ```bash
-## [33m10000000[39m
+## 10000000
 ```
 
 In addition to base-10 integer literals, JavaScript recognizes hexadecimal (base-16) values. A hexadecimal literal begins with `0x` or `0X`, followed by a string of hexadecimal digits. A hexadecimal digit is one of the digits 0 through 9 or the letters a (or A)
@@ -102,7 +102,7 @@ Floating-point literals can have a decimal point; they use the traditional synta
 1.4738223E-32 // 1.4738223 × 10 ⁻ ³²
 ```
 ```bash
-## [33m1.4738223e-32[39m
+## 1.4738223e-32
 ```
 
 ### Arithmetic in JavaScript
@@ -148,7 +148,7 @@ Math.asinh(x) // Hyperbolic arcsine. Also Math.acosh(), Math.atanh()
 
 ```
 ```bash
-## [33mNaN[39m
+## NaN
 ```
 
 Arithmetic in JavaScript does not raise errors in cases of overflow, underflow, or division by zero. When the result of a numeric operation is larger than the largest representable number (overflow), the result is a special infinity value, Infinity.
@@ -172,7 +172,7 @@ Number.MIN_VALUE/2
 -0
 ```
 ```bash
-## [33m0[39m
+## 0
 ```
 
 The not-a-number value has one unusual feature in JavaScript: it does not compare equal to any other value, including itself. This means that you can’t write `x === NaN` to determine whether the value of a variable x is NaN. Instead, you must write `x != x`
@@ -343,7 +343,7 @@ As discussed above, strings are nothing but arrays composed with 16-bit characte
 a_text[0] + a_text[1] + a_text[2] + a_text[3];
 ```
 ```bash
-## [32m'This'[39m
+## 'This'
 ```
 
 ```javascript

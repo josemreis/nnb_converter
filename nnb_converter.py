@@ -86,7 +86,7 @@ def code_cell_to_md(cell: dict) -> str:
     for code in code_list:
         out += as_code_block(code=code, language=cell.get("language"))
     for output in output_list:
-        md_output=""
+        md_output = ""
         if output:
             for cur_output in output.get("items"):
                 md_output += as_code_block(
@@ -101,7 +101,7 @@ def code_cell_to_md(cell: dict) -> str:
                 )
         out += md_output
     return out
-        
+
 
 def string_to_multiline(text: str, every_n_character: int = 79) -> str:
     """add line breaks every n character"""
@@ -112,9 +112,11 @@ def remove_italic_bold_syntax(text: str) -> str:
     """remove all the ** from a text"""
     return " ".join([_ for _ in re.sub("\*", "", text).split() if len(_) > 0])
 
-def process_comment(text:str) -> str:
+
+def process_comment(text: str) -> str:
     text = remove_italic_bold_syntax(text=text)
     return string_to_multiline(text=text)
+
 
 def markdown_cell_to_comment(cell: dict, **kwargs) -> str:
     """Convert markdown cell to a javascript comment"""

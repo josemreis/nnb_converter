@@ -56,7 +56,7 @@ def parse_nnb(nnb_path: str = "resources/sample.nnb") -> dict:
 
 def as_code_block(code: str, language: str = "bash") -> str:
     """create a code block"""
-    return "\n".join(["```" + language, code, "```"])
+    return "\n" + "\n".join(["```" + language, code, "```"])
 
 
 def remove_ansi_escape(text: str) -> str:
@@ -83,23 +83,25 @@ def code_cell_to_md(cell: dict) -> str:
     code_list = cell.get("source")
     output_list = cell.get("outputs")
     out = ""
-    for code, output in zip(code_list, output_list):
-        code_block = as_code_block(code=code, language=cell.get("language"))
-        md_output = ""
-        for cur_output in output.get("items"):
-            md_output += as_code_block(
-                "\n".join(
-                    [
-                        "## " + remove_ansi_escape(_)
-                        for _ in cur_output.get("value")
-                        if len(_) > 0
-                    ]
-                ),
-                language="bash",
-            )
-        out += "\n".join([code_block, md_output])
+    for code in code_list:
+        out += as_code_block(code=code, language=cell.get("language"))
+    for output in output_list:
+        md_output=""
+        if output:
+            for cur_output in output.get("items"):
+                md_output += as_code_block(
+                    "\n".join(
+                        [
+                            "## " + remove_ansi_escape(_)
+                            for _ in cur_output.get("value")
+                            if len(_) > 0
+                        ]
+                    ),
+                    language="bash",
+                )
+        out += md_output
     return out
-
+        
 
 def string_to_multiline(text: str, every_n_character: int = 79) -> str:
     """add line breaks every n character"""
